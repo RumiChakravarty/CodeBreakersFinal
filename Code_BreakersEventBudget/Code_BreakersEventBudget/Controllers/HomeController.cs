@@ -19,7 +19,7 @@ namespace Code_BreakersEventBudget.Controllers
         {
             if (ModelState.IsValid)
             {
-                return View("Thanks", newUser);
+                return View("DisplayList", newUser);
             }
             else
             {
