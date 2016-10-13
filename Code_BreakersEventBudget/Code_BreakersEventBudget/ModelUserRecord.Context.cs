@@ -13,10 +13,10 @@ namespace Code_BreakersEventBudget
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class FinalProj_ListEntities : DbContext
+    public partial class UserRecordEntities1 : DbContext
     {
-        public FinalProj_ListEntities()
-            : base("name=FinalProj_ListEntities")
+        public UserRecordEntities1()
+            : base("name=UserRecordEntities1")
         {
         }
     
@@ -27,6 +27,6 @@ namespace Code_BreakersEventBudget
     
         public virtual DbSet<List> Lists { get; set; }
         public virtual DbSet<ListItem> ListItems { get; set; }
-        public virtual DbSet<Personal_Info> Personal_Infoes { get; set; }
+        public virtual DbSet<PersonalInfo> PersonalInfoes { get; set; }
     }
 }

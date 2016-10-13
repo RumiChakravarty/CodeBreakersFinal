@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Code_BreakersEventBudget.List>
+
+@{
+    ViewBag.Title = "DisplayView";
+}
+
+@using (Html.BeginForm())
+{  @Html.TextBox("UserID", null, new { @class = "form-control hidden", @value="@ViewBag.UserId" })
+
+
+    <p>Enter the Event:</p>
+    @Html.TextBox("Event", null, new { @class = "form-control" })
+
+
+    <p>Enter Budget:</p>
+    @Html.TextBox("Budget", null, new { @class = "form-control" })
+
+    
+}
+
+
+<h2>DisplayView</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Budget)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PersonalInfo.Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Budget)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PersonalInfo.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ListID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ListID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ListID })
+        </td>
+    </tr>
+}
+
+</table>

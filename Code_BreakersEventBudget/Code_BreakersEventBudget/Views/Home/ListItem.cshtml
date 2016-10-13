@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Code_BreakersEventBudget.ListItem>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GiftFor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.List.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PersonalInfo.Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GiftFor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.List.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PersonalInfo.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ListItemID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ListItemID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ListItemID })
+        </td>
+    </tr>
+}
+
+</table>

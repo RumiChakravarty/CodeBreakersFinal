@@ -1,22 +1,44 @@
-﻿@model Code_BreakersEventBudget.Models.NewUser
+﻿@model Code_BreakersEventBudget.PersonalInfo
+
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Index";
 }
 
-<div class="jumbotron">
-    <h2>Welcome to the Event Budget Tracker</h2>
-    <span></span>
-</div>
+<h2>Enter your information</h2>
 
-<div class="row">
-    <div class="col-md-4">
-        <h3>Enter your information</h3>
-        @using (Html.BeginForm())
-        {
-            @Html.ValidationSummary()
-            <p> Name : @Html.TextBoxFor(x => x.Name)</p>
-            <p> Email : @Html.TextBoxFor(x => x.Email)</p>
-            <input type="submit" value="Submit" />
-        }
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>PersonalInfo</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <input name="id" type="text" value="@ViewBag.UserId" style="visibility:hidden"/>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
     </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
 </div>

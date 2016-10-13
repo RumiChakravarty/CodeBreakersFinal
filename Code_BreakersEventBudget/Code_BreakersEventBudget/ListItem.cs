@@ -14,10 +14,14 @@ namespace Code_BreakersEventBudget
     
     public partial class ListItem
     {
-        public string ListID { get; set; }
-        public string ListItemID { get; set; }
-        public string Price { get; set; }
+        public int ListID { get; set; }
+        public int ListItemID { get; set; }
+        public string ProductName { get; set; }
+        public decimal Price { get; set; }
+        public string GiftFor { get; set; }
+        public int UserID { get; set; }
     
         public virtual List List { get; set; }
+        public virtual PersonalInfo PersonalInfo { get; set; }
     }
 }

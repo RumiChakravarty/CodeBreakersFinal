@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="UserRecordModelStoreContainer" CdmEntityContainer="UserRecordEntities1">
+    <EntitySetMapping Name="Lists">
+      <EntityTypeMapping TypeName="UserRecordModel.List">
+        <MappingFragment StoreEntitySet="List">
+          <ScalarProperty Name="ListID" ColumnName="ListID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Budget" ColumnName="Budget" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ListItems">
+      <EntityTypeMapping TypeName="UserRecordModel.ListItem">
+        <MappingFragment StoreEntitySet="ListItem">
+          <ScalarProperty Name="ListID" ColumnName="ListID" />
+          <ScalarProperty Name="ListItemID" ColumnName="ListItemID" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="GiftFor" ColumnName="GiftFor" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PersonalInfoes">
+      <EntityTypeMapping TypeName="UserRecordModel.PersonalInfo">
+        <MappingFragment StoreEntitySet="PersonalInfo">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -20,12 +20,13 @@ namespace Code_BreakersEventBudget
             this.ListItems = new HashSet<ListItem>();
         }
     
-        public string Email { get; set; }
-        public string ListID { get; set; }
-        public string Discription { get; set; }
+        public int ListID { get; set; }
+        public int UserID { get; set; }
+        public string Description { get; set; }
+        public decimal Budget { get; set; }
     
-        public virtual Personal_Info Personal_Info { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ListItem> ListItems { get; set; }
+        public virtual PersonalInfo PersonalInfo { get; set; }
     }
 }

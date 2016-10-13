@@ -12,18 +12,22 @@ namespace Code_BreakersEventBudget
     using System;
     using System.Collections.Generic;
     
-    public partial class Personal_Info
+    public partial class PersonalInfo
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Personal_Info()
+        public PersonalInfo()
         {
             this.Lists = new HashSet<List>();
+            this.ListItems = new HashSet<ListItem>();
         }
     
-        public string Email { get; set; }
+        public int UserID { get; set; }
         public string Name { get; set; }
+        public string Email { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<List> Lists { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ListItem> ListItems { get; set; }
     }
 }
