@@ -23,6 +23,7 @@ namespace Code_BreakersEventBudget
         public string Email { get; set; }
         public string ListID { get; set; }
         public string Discription { get; set; }
+        public Nullable<decimal> Budget { get; set; }
     
         public virtual Personal_Info Personal_Info { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

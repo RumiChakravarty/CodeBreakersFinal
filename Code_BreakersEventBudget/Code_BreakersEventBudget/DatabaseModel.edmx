@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="FinalProj_ListModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="FinalProj_ListModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="List">
           <Key>
             <PropertyRef Name="ListID" />
@@ -12,6 +12,7 @@
           <Property Name="Email" Type="nchar" MaxLength="50" Nullable="false" />
           <Property Name="ListID" Type="nchar" MaxLength="50" Nullable="false" />
           <Property Name="Discription" Type="nchar" MaxLength="50" />
+          <Property Name="Budget" Type="decimal" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="ListItem">
           <Key>
@@ -52,7 +53,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="FinalProj_ListModelStoreContainer">
+        <EntityContainer Name="FinalProj_ListModel1StoreContainer">
           <EntitySet Name="List" EntityType="Self.List" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ListItem" EntityType="Self.ListItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Personal Info" EntityType="Self.Personal Info" Schema="dbo" store:Type="Tables" />
@@ -65,11 +66,10 @@
             <End Role="ListItem" EntitySet="ListItem" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="FinalProj_ListModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="FinalProj_ListModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="List">
           <Key>
             <PropertyRef Name="ListID" />
@@ -79,6 +79,7 @@
           <Property Name="Discription" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="Personal_Info" Relationship="Self.FK_List_Personal_Info" FromRole="List" ToRole="Personal_Info" />
           <NavigationProperty Name="ListItems" Relationship="Self.FK_ListItem_List" FromRole="List" ToRole="ListItem" />
+          <Property Name="Budget" Type="Decimal" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="ListItem">
           <Key>
@@ -121,7 +122,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="FinalProj_ListEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="FinalProj_ListEntitiesLocal" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Lists" EntityType="Self.List" />
           <EntitySet Name="ListItems" EntityType="Self.ListItem" />
           <EntitySet Name="Personal_Infoes" EntityType="Self.Personal_Info" />
@@ -139,10 +140,11 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="FinalProj_ListModelStoreContainer" CdmEntityContainer="FinalProj_ListEntities">
+        <EntityContainerMapping StorageEntityContainer="FinalProj_ListModel1StoreContainer" CdmEntityContainer="FinalProj_ListEntitiesLocal">
           <EntitySetMapping Name="Lists">
-            <EntityTypeMapping TypeName="FinalProj_ListModel.List">
+            <EntityTypeMapping TypeName="FinalProj_ListModel1.List">
               <MappingFragment StoreEntitySet="List">
+                <ScalarProperty Name="Budget" ColumnName="Budget" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="ListID" ColumnName="ListID" />
                 <ScalarProperty Name="Discription" ColumnName="Discription" />
@@ -150,7 +152,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ListItems">
-            <EntityTypeMapping TypeName="FinalProj_ListModel.ListItem">
+            <EntityTypeMapping TypeName="FinalProj_ListModel1.ListItem">
               <MappingFragment StoreEntitySet="ListItem">
                 <ScalarProperty Name="ListID" ColumnName="ListID" />
                 <ScalarProperty Name="ListItemID" ColumnName="ListItemID" />
@@ -159,7 +161,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Personal_Infoes">
-            <EntityTypeMapping TypeName="FinalProj_ListModel.Personal_Info">
+            <EntityTypeMapping TypeName="FinalProj_ListModel1.Personal_Info">
               <MappingFragment StoreEntitySet="Personal Info">
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Name" ColumnName="Name" />

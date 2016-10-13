@@ -11,13 +11,15 @@ namespace Code_BreakersEventBudget
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class ListItem
     {
         public string ListID { get; set; }
         public string ListItemID { get; set; }
         public string Price { get; set; }
-    
+        public string GiftFor { get; set; }
+        public string Product { get; set; }
+
         public virtual List List { get; set; }
     }
 }

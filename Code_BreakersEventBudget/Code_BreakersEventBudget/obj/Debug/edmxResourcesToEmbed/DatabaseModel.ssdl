@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FinalProj_ListModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="List">
+    <Key>
+      <PropertyRef Name="ListID" />
+    </Key>
+    <Property Name="Email" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="ListID" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="Discription" Type="nchar" MaxLength="50" />
+    <Property Name="Budget" Type="decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="ListItem">
+    <Key>
+      <PropertyRef Name="ListItemID" />
+    </Key>
+    <Property Name="ListID" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="ListItemID" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="Price" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Personal Info">
+    <Key>
+      <PropertyRef Name="Email" />
+    </Key>
+    <Property Name="Email" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="nchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_List_Personal Info">
+    <End Role="Personal Info" Type="Self.Personal Info" Multiplicity="1" />
+    <End Role="List" Type="Self.List" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Personal Info">
+        <PropertyRef Name="Email" />
+      </Principal>
+      <Dependent Role="List">
+        <PropertyRef Name="Email" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ListItem_List">
+    <End Role="List" Type="Self.List" Multiplicity="1" />
+    <End Role="ListItem" Type="Self.ListItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="List">
+        <PropertyRef Name="ListID" />
+      </Principal>
+      <Dependent Role="ListItem">
+        <PropertyRef Name="ListID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FinalProj_ListModel1StoreContainer">
+    <EntitySet Name="List" EntityType="Self.List" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ListItem" EntityType="Self.ListItem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Personal Info" EntityType="Self.Personal Info" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_List_Personal Info" Association="Self.FK_List_Personal Info">
+      <End Role="Personal Info" EntitySet="Personal Info" />
+      <End Role="List" EntitySet="List" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ListItem_List" Association="Self.FK_ListItem_List">
+      <End Role="List" EntitySet="List" />
+      <End Role="ListItem" EntitySet="ListItem" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

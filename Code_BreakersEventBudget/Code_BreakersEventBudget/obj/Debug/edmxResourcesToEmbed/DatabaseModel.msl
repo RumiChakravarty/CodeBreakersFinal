@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FinalProj_ListModel1StoreContainer" CdmEntityContainer="FinalProj_ListEntitiesLocal">
+    <EntitySetMapping Name="Lists">
+      <EntityTypeMapping TypeName="FinalProj_ListModel1.List">
+        <MappingFragment StoreEntitySet="List">
+          <ScalarProperty Name="Budget" ColumnName="Budget" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="ListID" ColumnName="ListID" />
+          <ScalarProperty Name="Discription" ColumnName="Discription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ListItems">
+      <EntityTypeMapping TypeName="FinalProj_ListModel1.ListItem">
+        <MappingFragment StoreEntitySet="ListItem">
+          <ScalarProperty Name="ListID" ColumnName="ListID" />
+          <ScalarProperty Name="ListItemID" ColumnName="ListItemID" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Personal_Infoes">
+      <EntityTypeMapping TypeName="FinalProj_ListModel1.Personal_Info">
+        <MappingFragment StoreEntitySet="Personal Info">
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

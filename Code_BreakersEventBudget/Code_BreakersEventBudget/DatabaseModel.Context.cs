@@ -13,10 +13,10 @@ namespace Code_BreakersEventBudget
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class FinalProj_ListEntities : DbContext
+    public partial class FinalProj_ListEntitiesLocal : DbContext
     {
-        public FinalProj_ListEntities()
-            : base("name=FinalProj_ListEntities")
+        public FinalProj_ListEntitiesLocal()
+            : base("name=FinalProj_ListEntitiesLocal")
         {
         }
     

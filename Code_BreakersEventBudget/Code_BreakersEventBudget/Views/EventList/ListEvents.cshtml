@@ -1,0 +1,56 @@
+﻿@model Code_BreakersEventBudget.ListItem
+
+@{
+    ViewBag.Title = "ListEvents";
+    var vList = (List)@ViewBag.ExampleList;
+
+}
+
+<h2>ListEvents</h2>
+
+<div>
+    <h4>List</h4>
+    <hr />
+
+    @*@Html.DisplayNameFor(model => model.Budget)
+    
+        @Html.DisplayFor(model => model.Budget)*@
+
+    <p>Budget: @vList.Budget</p>
+    @using (Html.BeginForm())
+    {
+        <p>Gift For:@Html.TextBoxFor(x => x.GiftFor)</p>
+        <p>Product:@Html.TextBoxFor(x => x.Product)</p>
+    }
+
+       @*<dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Email)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Email)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Discription)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Discription)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Budget)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Budget)
+                </dd>
+
+            </dl>*@
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ListID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
