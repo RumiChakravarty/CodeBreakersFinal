@@ -1,4 +1,4 @@
-﻿@model Code_BreakersEventBudget.ListItem
+﻿@model Code_BreakersEventBudget.List
 
 @{
     ViewBag.Title = "ListEvents";
@@ -12,16 +12,18 @@
     <h4>List</h4>
     <hr />
 
-    @*@Html.DisplayNameFor(model => model.Budget)
     
-        @Html.DisplayFor(model => model.Budget)*@
+    Budget: @Html.DisplayFor(model => model.Budget)
 
-    <p>Budget: @vList.Budget</p>
+    @*<p>Budget: @vList.Budget</p>*@
     @using (Html.BeginForm())
     {
-        <p>Gift For:@Html.TextBoxFor(x => x.GiftFor)</p>
-        <p>Product:@Html.TextBoxFor(x => x.Product)</p>
+        <p>Gift For: @Html.TextBoxFor(x => x.GiftFor)</p>
+        <p>Product: @Html.TextBoxFor(x => x.Product)</p>
     }
+
+    <input type="submit" value="Search" class="btn btn-default" />
+
 
        @*<dl class="dl-horizontal">
                 <dt>
@@ -51,6 +53,5 @@
             </dl>*@
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ListID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
