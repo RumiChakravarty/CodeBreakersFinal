@@ -26,6 +26,8 @@ namespace Code_BreakersEventBudget.Controllers
               //todo redirect after page is create  return Redirect(controller name and action);
 
             }
+
+
             ViewBag.ExampleList = lookupList;
             return View(lookupList);
         }
