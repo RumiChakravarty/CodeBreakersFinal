@@ -10,6 +10,7 @@
     <Property Name="Budget" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
     <NavigationProperty Name="ListItems" Relationship="Self.fk_List" FromRole="List" ToRole="ListItem" />
     <NavigationProperty Name="PersonalInfo" Relationship="Self.fk_PersonalInfo" FromRole="List" ToRole="PersonalInfo" />
+    <Property Name="EventDate" Type="DateTime" Precision="0" />
   </EntityType>
   <EntityType Name="ListItem">
     <Key>

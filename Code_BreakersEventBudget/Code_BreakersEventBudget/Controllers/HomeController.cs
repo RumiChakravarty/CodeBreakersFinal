@@ -105,8 +105,8 @@ namespace Code_BreakersEventBudget.Controllers
             dbContext.Lists.Remove(removeRecord);
             dbContext.SaveChanges();
              List<List> existingLists = dbContext.Lists.Where(m => m.UserID == uId).ToList();
-           // return RedirectToAction("DisplayView");
-             return View("DisplayView", existingLists);
+            return RedirectToAction("DisplayView", new { id = uId });
+            // return View("DisplayView", existingLists);
         }
         //[HttpPost]
         //public ActionResult Delete(int id, List l1)
@@ -151,6 +151,7 @@ namespace Code_BreakersEventBudget.Controllers
                 Helper helper = new Helper();
                 List<ListItem> listItems = helper.CallWalmartAPI(strSearch,UserId,ListId);
                 ViewBag.listItems = listItems;
+                //ViewBag.UserId = 
                 return View("DisplayAPIData");
             }
             catch
@@ -160,7 +161,29 @@ namespace Code_BreakersEventBudget.Controllers
         }
 
 
-        public ActionResult Add()
+        //public ActionResult Add()
+        //{
+
+        //    return RedirectToAction("ContinueShopping");
+        //    //return View("ContinueShopping");
+        //    //return View();
+        //}
+
+        //     [HttpPost]
+        //public ActionResult Add(ListItem listItem)
+        //{
+
+        //    listItem = dbContext.ListItems.Add(listItem);
+        //        dbContext.SaveChanges();
+        //        //return View("ContinueShopping");
+
+        //    return RedirectToAction("ContinueShopping");
+
+        //}
+
+        
+
+        public ActionResult AddAPIValueToList()
         {
 
             return RedirectToAction("ContinueShopping");
@@ -168,36 +191,16 @@ namespace Code_BreakersEventBudget.Controllers
             //return View();
         }
 
-             [HttpPost]
-        public ActionResult Add(ListItem listItem)
+        [HttpPost]
+        public ActionResult AddAPIValueToList(ListItem listItem)
         {
 
             listItem = dbContext.ListItems.Add(listItem);
-                dbContext.SaveChanges();
-                //return View("ContinueShopping");
+            dbContext.SaveChanges();
+            //return View("ContinueShopping");
 
-            return RedirectToAction("ContinueShopping");
+            return RedirectToAction("ContinueShopping" ,new { id=listItem.ListID});
 
         }
-
-        //public ActionResult AddAPIValueToList()
-        //{
-
-        //    return RedirectToAction("Search");
-        //    //return View("ContinueShopping");
-        //    //return View();
-        //}
-
-        //[HttpPost]
-        //public ActionResult AddAPIValueToList()
-        //{
-
-        //    listItem = dbContext.ListItems.Add(listItem);
-        //    dbContext.SaveChanges();
-        //    //return View("ContinueShopping");
-
-        //    return RedirectToAction("ContinueShopping");
-
-        //}
     }
 }

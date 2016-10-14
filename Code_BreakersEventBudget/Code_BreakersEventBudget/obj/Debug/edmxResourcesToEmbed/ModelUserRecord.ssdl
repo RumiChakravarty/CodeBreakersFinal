@@ -8,6 +8,7 @@
     <Property Name="UserID" Type="int" Nullable="false" />
     <Property Name="Description" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="Budget" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="EventDate" Type="date" />
   </EntityType>
   <EntityType Name="ListItem">
     <Key>

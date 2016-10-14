@@ -25,7 +25,7 @@
                 <td>@listItem.ProductName</td>
                 <td>@listItem.Price</td>
                 <td><img src="@listItem.ThumbnailUrl" /></td>
-                <td>@using (Html.BeginForm())
+                <td>@using (Html.BeginForm("ContinueShopping", "Home", new { id =ViewBag.UserID}))
                 {
 <input type="submit" value="Add to List" />}</td>
                 @*<td>@Html.ActionLink("Add To List", "AddToList", new { id = listItem.ListItemID })</td>*@

@@ -4,6 +4,7 @@
     <EntitySetMapping Name="Lists">
       <EntityTypeMapping TypeName="UserRecordModel.List">
         <MappingFragment StoreEntitySet="List">
+          <ScalarProperty Name="EventDate" ColumnName="EventDate" />
           <ScalarProperty Name="ListID" ColumnName="ListID" />
           <ScalarProperty Name="UserID" ColumnName="UserID" />
           <ScalarProperty Name="Description" ColumnName="Description" />

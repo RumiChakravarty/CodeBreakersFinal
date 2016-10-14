@@ -24,6 +24,7 @@ namespace Code_BreakersEventBudget
         public int UserID { get; set; }
         public string Description { get; set; }
         public decimal Budget { get; set; }
+        public Nullable<System.DateTime> EventDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ListItem> ListItems { get; set; }
