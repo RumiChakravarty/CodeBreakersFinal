@@ -13,6 +13,7 @@
           <Property Name="UserID" Type="int" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Budget" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="EventDate" Type="date" />
         </EntityType>
         <EntityType Name="ListItem">
           <Key>
@@ -101,6 +102,7 @@
           <Property Name="Budget" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <NavigationProperty Name="ListItems" Relationship="Self.fk_List" FromRole="List" ToRole="ListItem" />
           <NavigationProperty Name="PersonalInfo" Relationship="Self.fk_PersonalInfo" FromRole="List" ToRole="PersonalInfo" />
+          <Property Name="EventDate" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="ListItem">
           <Key>
@@ -188,6 +190,7 @@
           <EntitySetMapping Name="Lists">
             <EntityTypeMapping TypeName="UserRecordModel.List">
               <MappingFragment StoreEntitySet="List">
+                <ScalarProperty Name="EventDate" ColumnName="EventDate" />
                 <ScalarProperty Name="ListID" ColumnName="ListID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="Description" ColumnName="Description" />

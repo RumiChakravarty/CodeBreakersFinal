@@ -8,7 +8,9 @@
 @ViewBag.UserID
 @ViewBag.UserName
 <h2>Please enter the event you want to shop for and your budget</h2>
-@using (Html.BeginForm())
+@*@using (Html.BeginForm("Login", "Account", new { UserId = "5" }))*@
+
+@using (Html.BeginForm("DisplayView","Home"))
 {  @Html.TextBox("UserID", null, new { @class = "form-control hidden", @value="@ViewBag.UserId" })
 
 
@@ -60,6 +62,7 @@
         <td>
             @Html.ActionLink("Continue Shopping", "ContinueShopping", new { id=item.ListID }) |            
             @Html.ActionLink("Delete", "Delete", new { id=item.ListID })
+            @*@Html.ActionLink("Go to contact page", "Contact", new { Name = "Example" }, new { id = "link1" })*@
         </td>
     </tr>
 }

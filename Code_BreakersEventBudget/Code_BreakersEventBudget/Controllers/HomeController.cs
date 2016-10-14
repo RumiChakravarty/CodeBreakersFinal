@@ -163,8 +163,8 @@ namespace Code_BreakersEventBudget.Controllers
         public ActionResult Add()
         {
 
-           // return RedirectToAction("ContinueShopping");
-            return View("ContinueShopping");
+            return RedirectToAction("ContinueShopping");
+            //return View("ContinueShopping");
             //return View();
         }
 
@@ -174,9 +174,30 @@ namespace Code_BreakersEventBudget.Controllers
 
             listItem = dbContext.ListItems.Add(listItem);
                 dbContext.SaveChanges();
-                return View("ContinueShopping");
-           
+                //return View("ContinueShopping");
+
+            return RedirectToAction("ContinueShopping");
 
         }
+
+        //public ActionResult AddAPIValueToList()
+        //{
+
+        //    return RedirectToAction("Search");
+        //    //return View("ContinueShopping");
+        //    //return View();
+        //}
+
+        //[HttpPost]
+        //public ActionResult AddAPIValueToList()
+        //{
+
+        //    listItem = dbContext.ListItems.Add(listItem);
+        //    dbContext.SaveChanges();
+        //    //return View("ContinueShopping");
+
+        //    return RedirectToAction("ContinueShopping");
+
+        //}
     }
 }
