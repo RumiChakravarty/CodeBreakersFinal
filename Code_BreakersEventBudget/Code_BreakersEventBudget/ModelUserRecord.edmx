@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="UserRecordModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="UserRecordModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="List">
           <Key>
             <PropertyRef Name="ListID" />
@@ -24,6 +24,7 @@
           <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="GiftFor" Type="nvarchar" MaxLength="50" />
           <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="ThumbnailUrl" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="PersonalInfo">
           <Key>
@@ -86,8 +87,7 @@
             <End Role="ListItem" EntitySet="ListItem" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="UserRecordModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -114,6 +114,7 @@
           <Property Name="UserID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="List" Relationship="Self.fk_List" FromRole="ListItem" ToRole="List" />
           <NavigationProperty Name="PersonalInfo" Relationship="Self.fk_PersonalInfo1" FromRole="ListItem" ToRole="PersonalInfo" />
+          <Property Name="ThumbnailUrl" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="PersonalInfo">
           <Key>
@@ -197,6 +198,7 @@
           <EntitySetMapping Name="ListItems">
             <EntityTypeMapping TypeName="UserRecordModel.ListItem">
               <MappingFragment StoreEntitySet="ListItem">
+                <ScalarProperty Name="ThumbnailUrl" ColumnName="ThumbnailUrl" />
                 <ScalarProperty Name="ListID" ColumnName="ListID" />
                 <ScalarProperty Name="ListItemID" ColumnName="ListItemID" />
                 <ScalarProperty Name="ProductName" ColumnName="ProductName" />

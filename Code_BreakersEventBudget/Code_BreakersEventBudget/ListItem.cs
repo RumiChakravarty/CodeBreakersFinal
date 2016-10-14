@@ -20,6 +20,7 @@ namespace Code_BreakersEventBudget
         public decimal Price { get; set; }
         public string GiftFor { get; set; }
         public int UserID { get; set; }
+        public string ThumbnailUrl { get; set; }
     
         public virtual List List { get; set; }
         public virtual PersonalInfo PersonalInfo { get; set; }

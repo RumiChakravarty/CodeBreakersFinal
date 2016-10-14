@@ -4,18 +4,26 @@
     ViewBag.Title = "DisplayView";
 }
 
+<h2> Welcome @ViewBag.UserName</h2>
+@ViewBag.UserID
+@ViewBag.UserName
+<h2>Please enter the event you want to shop for and your budget</h2>
 @using (Html.BeginForm())
 {  @Html.TextBox("UserID", null, new { @class = "form-control hidden", @value="@ViewBag.UserId" })
 
 
-    <p>Enter the Event:</p>
-    @Html.TextBox("Event", null, new { @class = "form-control" })
+    <p>
+        Enter the Event:
+        @Html.TextBox("Event", null, new { @class = "form-control" })
+    </p>
+    @*<input name="UserId" type="text" value="@ViewBag.UserId" class="hidden"/>*@
 
+    <p>
+        Enter Budget:
+        @Html.TextBox("Budget", null, new { @class = "form-control" })
+    </p>
+    <p><input type="submit" value="Add Event" /></p>
 
-    <p>Enter Budget:</p>
-    @Html.TextBox("Budget", null, new { @class = "form-control" })
-
-    
 }
 
 
@@ -50,8 +58,7 @@
             @Html.DisplayFor(modelItem => item.PersonalInfo.Name)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ListID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ListID }) |
+            @Html.ActionLink("Continue Shopping", "ContinueShopping", new { id=item.ListID }) |            
             @Html.ActionLink("Delete", "Delete", new { id=item.ListID })
         </td>
     </tr>

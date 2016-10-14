@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "DisplayAPIData";
+}
+
+<h2>DisplayAPIData</h2>
+
+<div>
+    <h4>ListItem</h4>
+    <hr />
+    <table border="1">
+        <tr>
+            <th>ListID</th>
+            <th>UserID</th>
+            <th>ItemName</th>
+            <th>Price</th>
+            <th>Thumbnnail URL</th>
+
+            <th>Actions</th>
+        </tr>
+        @foreach (ListItem listItem in ViewBag.listItems)
+        {
+            <tr>
+                <td>@listItem.ListID</td>
+                <td>@listItem.UserID</td>
+                <td>@listItem.ProductName</td>
+                <td>@listItem.Price</td>
+                <td><img src="@listItem.ThumbnailUrl" /></td>
+                <td>@using (Html.BeginForm())
+                {
+<input type="submit" value="Add to List" />}</td>
+                @*<td>@Html.ActionLink("Add To List", "AddToList", new { id = listItem.ListItemID })</td>*@
+            </tr>
+        }
+    </table>
+</div>

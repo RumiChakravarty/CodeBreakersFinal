@@ -14,6 +14,7 @@
     <EntitySetMapping Name="ListItems">
       <EntityTypeMapping TypeName="UserRecordModel.ListItem">
         <MappingFragment StoreEntitySet="ListItem">
+          <ScalarProperty Name="ThumbnailUrl" ColumnName="ThumbnailUrl" />
           <ScalarProperty Name="ListID" ColumnName="ListID" />
           <ScalarProperty Name="ListItemID" ColumnName="ListItemID" />
           <ScalarProperty Name="ProductName" ColumnName="ProductName" />

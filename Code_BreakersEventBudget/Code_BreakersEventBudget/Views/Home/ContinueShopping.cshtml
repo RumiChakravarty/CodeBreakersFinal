@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "ContinueShopping";
+}
+
+<h2>Hello @ViewBag.UserName</h2><h2>Budget : @ViewBag.Budget</h2>
+<h2>Event : @ViewBag.Event</h2>
+
+<form name="form1" action="~/home/Search" method="post">
+    <label>Enter Item Name:</label>
+    <input id="search" name="search" type="text" />
+    <input id="UserID" type="hidden" name="UserId" value="@ViewBag.UserID" />
+    <input id="ListID" type="hidden" name="ListID" value="@ViewBag.ListID" />
+    <input type="submit" id="submit" name="submit" value="submit" />
+</form>
+
