@@ -80,6 +80,7 @@ namespace Code_BreakersEventBudget.Controllers
 
             usersNewList.Description = form["Event"].ToString();
             usersNewList.Budget = decimal.Parse(form["Budget"]);
+            usersNewList.EventDate = DateTime.Parse(form["DDate"]);
             int id = int.Parse(form["UserID"].ToString());
             ViewBag.UserID = id;
             if (ModelState.IsValid)
@@ -118,23 +119,55 @@ namespace Code_BreakersEventBudget.Controllers
         //    return View("DisplayView");
         //}
 
+        //public ActionResult ContinueShopping(int id)
+        //{
+        //    //List<ListItem> existingList = new List<ListItem>();
+        //    //if (id > 0)
+        //    //{
+        //    //    existingList = dbContext.ListItems.Where(m => m.ListId == id).ToList();
+        //    //    if (existingList == null) { existingList = new List<ListItem>(); }
+        //    //}
+        //    var uId = dbContext.Lists.Where(m => m.ListID == id).Single().UserID;
+        //    ViewBag.UserID = uId;
+        //    ViewBag.ListID = id;
+        //    ViewBag.UserName = dbContext.PersonalInfoes.Where(m => m.UserID == uId).Single().Name;
+        //     ViewBag.Budget = dbContext.Lists.Where(m => m.ListID == id).Single().Budget;
+        //    ViewBag.Event = dbContext.Lists.Where(m => m.ListID == id).Single().Description;
+        //    return View("ContinueShopping");
+        //}
+
+
         public ActionResult ContinueShopping(int id)
         {
             //List<ListItem> existingList = new List<ListItem>();
-            //if (id > 0)
-            //{
-            //    existingList = dbContext.ListItems.Where(m => m.ListId == id).ToList();
-            //    if (existingList == null) { existingList = new List<ListItem>(); }
-            //}
+            //    //if (id > 0)
+            //    //{
+            //    //    existingList = dbContext.ListItems.Where(m => m.ListId == id).ToList();
+            //    //    if (existingList == null) { existingList = new List<ListItem>(); }
+            //    //}
+            List<ListItem> existingList = new List<ListItem>();
+            if (id > 0)
+            {
+                existingList = dbContext.ListItems.Where(m => m.ListID == id).ToList();
+                if (existingList == null) { existingList = new List<ListItem>(); }
+            }
+
             var uId = dbContext.Lists.Where(m => m.ListID == id).Single().UserID;
             ViewBag.UserID = uId;
             ViewBag.ListID = id;
             ViewBag.UserName = dbContext.PersonalInfoes.Where(m => m.UserID == uId).Single().Name;
-             ViewBag.Budget = dbContext.Lists.Where(m => m.ListID == id).Single().Budget;
+            ViewBag.Budget = dbContext.Lists.Where(m => m.ListID == id).Single().Budget;
             ViewBag.Event = dbContext.Lists.Where(m => m.ListID == id).Single().Description;
-            return View("ContinueShopping");
+            DateTime eventDate = dbContext.Lists.Where(m => m.ListID == id).Single().EventDate.Value;
+
+            TimeSpan timespan = eventDate - DateTime.Now;
+
+
+            ViewBag.DaysLeft = timespan.Days;
+            return View("ContinueShopping", existingList);
         }
 
+       
         public ActionResult Search()
         {
             return View("ContinueShopping");
@@ -151,7 +184,7 @@ namespace Code_BreakersEventBudget.Controllers
                 Helper helper = new Helper();
                 List<ListItem> listItems = helper.CallWalmartAPI(strSearch,UserId,ListId);
                 ViewBag.listItems = listItems;
-                //ViewBag.UserId = 
+                ViewBag.ListID = ListId;
                 return View("DisplayAPIData");
             }
             catch
@@ -183,23 +216,28 @@ namespace Code_BreakersEventBudget.Controllers
 
         
 
-        public ActionResult AddAPIValueToList()
-        {
-
-            return RedirectToAction("ContinueShopping");
-            //return View("ContinueShopping");
-            //return View();
-        }
+      
 
         [HttpPost]
-        public ActionResult AddAPIValueToList(ListItem listItem)
+        public ActionResult AddAPIValueToList(string Product, decimal Price, int ListID, int UserID, string ThumbnailUrl)
         {
+            ListItem listdetail = new ListItem();
+            listdetail.ProductName = Product.Substring(0, Math.Min(Product.Length, 50));
+            listdetail.Price = Price;
+            listdetail.ListID = ListID;
+            listdetail.UserID = UserID;
+            listdetail.ThumbnailUrl = ThumbnailUrl;
+            dbContext.ListItems.Add(listdetail);
+            try
+            {
+                dbContext.SaveChanges();
+            }
+            catch (Exception e)
+            {
 
-            listItem = dbContext.ListItems.Add(listItem);
-            dbContext.SaveChanges();
-            //return View("ContinueShopping");
-
-            return RedirectToAction("ContinueShopping" ,new { id=listItem.ListID});
+            }
+          
+            return RedirectToAction("ContinueShopping" ,new { id = ListID});
 
         }
     }

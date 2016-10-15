@@ -25,10 +25,10 @@
                 <td>@listItem.ProductName</td>
                 <td>@listItem.Price</td>
                 <td><img src="@listItem.ThumbnailUrl" /></td>
-                <td>@using (Html.BeginForm("ContinueShopping", "Home", new { id =ViewBag.UserID}))
+                <td>@using (Html.BeginForm("AddAPIValueToList", "Home", new {Product = listItem.ProductName, Price = listItem.Price , ListId= listItem.ListID, UserId= listItem.UserID, ThumbnailUrl = listItem.ThumbnailUrl}))
                 {
-<input type="submit" value="Add to List" />}</td>
-                @*<td>@Html.ActionLink("Add To List", "AddToList", new { id = listItem.ListItemID })</td>*@
+                <input type="submit" value="Add to List" />}*
+               </td>
             </tr>
         }
     </table>

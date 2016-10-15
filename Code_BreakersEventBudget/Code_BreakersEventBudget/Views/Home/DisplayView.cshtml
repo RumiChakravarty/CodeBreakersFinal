@@ -19,7 +19,10 @@
         @Html.TextBox("Event", null, new { @class = "form-control" })
     </p>
     @*<input name="UserId" type="text" value="@ViewBag.UserId" class="hidden"/>*@
-
+    <p>
+        Date of Event:
+        <input name="DDate" type="date" class="form-control" />
+    </p>
     <p>
         Enter Budget:
         @Html.TextBox("Budget", null, new { @class = "form-control" })
@@ -45,6 +48,10 @@
         <th>
             @Html.DisplayNameFor(model => model.PersonalInfo.Name)
         </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.EventDate)
+        </th>
         <th></th>
     </tr>
 
@@ -58,6 +65,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.PersonalInfo.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.EventDate)
         </td>
         <td>
             @Html.ActionLink("Continue Shopping", "ContinueShopping", new { id=item.ListID }) |            

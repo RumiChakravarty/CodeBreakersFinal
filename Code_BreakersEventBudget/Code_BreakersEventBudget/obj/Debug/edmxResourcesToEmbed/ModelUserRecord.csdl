@@ -24,7 +24,7 @@
     <Property Name="UserID" Type="Int32" Nullable="false" />
     <NavigationProperty Name="List" Relationship="Self.fk_List" FromRole="ListItem" ToRole="List" />
     <NavigationProperty Name="PersonalInfo" Relationship="Self.fk_PersonalInfo1" FromRole="ListItem" ToRole="PersonalInfo" />
-    <Property Name="ThumbnailUrl" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ThumbnailUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="PersonalInfo">
     <Key>

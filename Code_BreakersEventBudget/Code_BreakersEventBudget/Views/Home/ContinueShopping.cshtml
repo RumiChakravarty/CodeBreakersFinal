@@ -1,11 +1,12 @@
-﻿
+﻿@model IEnumerable<Code_BreakersEventBudget.ListItem>
 @{
     ViewBag.Title = "ContinueShopping";
 }
 
-<h2>Hello @ViewBag.UserName</h2><h2>Budget : @ViewBag.Budget</h2>
-<h2>Event : @ViewBag.Event</h2>
+<h2>Hello @ViewBag.UserName</h2>
+<h2>Budget : @ViewBag.Budget</h2>
 
+<h2>Countdown :@ViewBag.DaysLeft Days Left Until </h2><h2>Event : @ViewBag.Event</h2>
 <form name="form1" action="~/home/Search" method="post">
     <label>Enter Item Name:</label>
     <input id="search" name="search" type="text" />
@@ -13,4 +14,42 @@
     <input id="ListID" type="hidden" name="ListID" value="@ViewBag.ListID" />
     <input type="submit" id="submit" name="submit" value="submit" />
 </form>
+<h2>ContinueShopping2</h2>
 
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GiftFor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ThumbnailUrl)
+        </th>
+              
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GiftFor)
+            </td>
+            <td>
+                <img src="@item.ThumbnailUrl" />
+            </td>
+              <td>
+                @Html.ActionLink("Delete", "Delete", new { id = item.ListID })
+            </td>
+        </tr>
+    }
+</table>
