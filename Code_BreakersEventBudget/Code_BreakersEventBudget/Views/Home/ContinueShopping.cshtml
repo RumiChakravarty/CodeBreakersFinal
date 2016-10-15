@@ -48,8 +48,29 @@
                 <img src="@item.ThumbnailUrl" />
             </td>
               <td>
-                @Html.ActionLink("Delete", "Delete", new { id = item.ListID })
+                @Html.ActionLink("Delete", "DeleteFromListItem", new { id = item.ListItemID })
             </td>
         </tr>
     }
+    <tr>
+        <td>
+            Total
+        </td>
+        <td>
+            @ViewBag.TotalPrice
+        </td>
+        <td>
+            -
+        </td>
+        <td>
+            -
+        </td>
+
+    </tr>
+    <tr>
+        <td colspan="5">
+            <h2> @ViewBag.Message</h2>
+        </td>
+        
+    </tr>
 </table>

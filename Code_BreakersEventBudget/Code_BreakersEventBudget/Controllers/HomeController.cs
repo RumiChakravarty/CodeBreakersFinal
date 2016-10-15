@@ -156,14 +156,27 @@ namespace Code_BreakersEventBudget.Controllers
             ViewBag.UserID = uId;
             ViewBag.ListID = id;
             ViewBag.UserName = dbContext.PersonalInfoes.Where(m => m.UserID == uId).Single().Name;
-            ViewBag.Budget = dbContext.Lists.Where(m => m.ListID == id).Single().Budget;
+            var budget = dbContext.Lists.Where(m => m.ListID == id).Single().Budget;
+            ViewBag.Budget = budget;
             ViewBag.Event = dbContext.Lists.Where(m => m.ListID == id).Single().Description;
+            var recCount = dbContext.ListItems.Where(m => m.ListID == id).Count();
+            var totalPrice = 0.0m;
+            if (recCount > 0)
+                totalPrice = dbContext.ListItems.Where(m => m.ListID == id).Sum(m => m.Price);
+           
             DateTime eventDate = dbContext.Lists.Where(m => m.ListID == id).Single().EventDate.Value;
-
             TimeSpan timespan = eventDate - DateTime.Now;
-
-
             ViewBag.DaysLeft = timespan.Days;
+            ViewBag.TotalPrice = totalPrice;
+            if (totalPrice > budget)
+            {
+                ViewBag.Message = "You have exceeded your budget!";
+            }               
+            else
+            {
+                var balanceRemain = budget - totalPrice;
+                ViewBag.Message = "Remaining budget balance: " + balanceRemain.ToString();
+            }
             return View("ContinueShopping", existingList);
         }
 
@@ -239,6 +252,17 @@ namespace Code_BreakersEventBudget.Controllers
           
             return RedirectToAction("ContinueShopping" ,new { id = ListID});
 
+        }
+
+        public ActionResult DeleteFromListItem(int id)
+        {
+            ListItem removeRecord = dbContext.ListItems.Find(id);
+            var lId = removeRecord.ListID;
+            dbContext.ListItems.Remove(removeRecord);
+            dbContext.SaveChanges();
+            List<List> existingLists = dbContext.Lists.Where(m => m.ListID == lId).ToList();
+            return RedirectToAction("ContinueShopping", new { id = lId });
+            // return View("DisplayView", existingLists);
         }
     }
 }
