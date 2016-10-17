@@ -247,4 +247,3 @@ C:\Users\PCUser\Documents\Final Project\CodeBreakersFinal\Code_BreakersEventBudg
 C:\Users\PCUser\Documents\Final Project\CodeBreakersFinal\Code_BreakersEventBudget\Code_BreakersEventBudget\bin\JsonFx.dll
 C:\Users\PCUser\Documents\Final Project\CodeBreakersFinal\Code_BreakersEventBudget\Code_BreakersEventBudget\bin\EasyHttp.pdb
 C:\Users\PCUser\Documents\Final Project\CodeBreakersFinal\Code_BreakersEventBudget\Code_BreakersEventBudget\bin\JsonFx.xml
-C:\Users\PCUser\Documents\Final Project\CodeBreakersFinal\Code_BreakersEventBudget\Code_BreakersEventBudget\obj\Debug\Code_BreakersEventBudget.csprojResolveAssemblyReference.cache

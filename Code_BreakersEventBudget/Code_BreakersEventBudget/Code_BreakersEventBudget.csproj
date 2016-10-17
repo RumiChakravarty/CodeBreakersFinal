@@ -285,6 +285,8 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\image\images.jpg" />
+    <Content Include="Scripts\image\slack_for_ios_upload.png" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -335,6 +337,7 @@
     <Content Include="Views\Home\DisplayView.cshtml" />
     <Content Include="Views\Home\ContinueShopping.cshtml" />
     <Content Include="Views\Home\DisplayAPIData.cshtml" />
+    <Content Include="Views\Home\SendEmail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using EasyHttp.Http;
+using System.IO;
 
 namespace Code_BreakersEventBudget.Utility
 {
     public class Helper
     {
-        public List<ListItem> CallWalmartAPI(string strSearchName, int uId, int lId)
+        public List<ListItem> CallWalmartAPI(string strSearchName, string GiftFor, int uId, int lId )
         {
             //string url = "http://api.walmartlabs.com/v1/search?query=ipod&format=json&apiKey=hf4pbpg3p2e52vw6nfhj8chr";
             string url = "http://api.walmartlabs.com/v1/search?query=SEARCH_NAME&format=json&apiKey=hf4pbpg3p2e52vw6nfhj8chr";
@@ -39,11 +40,21 @@ namespace Code_BreakersEventBudget.Utility
                 listItem.ProductName = body.items[i].name;
                 listItem.Price = Convert.ToDecimal(body.items[i].salePrice);
                 listItem.ThumbnailUrl = body.items[i].thumbnailImage;
+                listItem.GiftFor = GiftFor;
                 //listItem.ProductURL = body.items[i].productUrl;
                 listItems.Add(listItem);
             }
             return (listItems);
 
+        }
+
+        public string HttpContent(string url)
+        {
+            System.Net.WebRequest objRequest = System.Net.HttpWebRequest.Create(url);
+            StreamReader sr = new StreamReader(objRequest.GetResponse().GetResponseStream());
+            string result = sr.ReadToEnd();
+            sr.Close();
+            return result;
         }
 
     }

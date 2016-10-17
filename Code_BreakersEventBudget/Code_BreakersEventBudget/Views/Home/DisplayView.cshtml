@@ -1,17 +1,22 @@
 ﻿@model IEnumerable<Code_BreakersEventBudget.List>
 
 @{
-    ViewBag.Title = "DisplayView";
+    ViewBag.Title = "Display the Event and Budget";
 }
 
-<h2> Welcome @ViewBag.UserName</h2>
-@ViewBag.UserID
-@ViewBag.UserName
-<h2>Please enter the event you want to shop for and your budget</h2>
+<img src="~/Scripts/image/slack_for_ios_upload.png" style="width:300px; float:right" />
+<h3> Welcome @ViewBag.UserName</h3>
+<input id="UserID" type="hidden" name="UserID" value="@ViewBag.UserID" />
+<input id="UserName" type="hidden" name="ListID" value="@ViewBag.UserName" />
+@*@ViewBag.UserID
+    @ViewBag.UserName*@
+<h4>Please enter the event you want to shop for, event date and your budget</h4>
 @*@using (Html.BeginForm("Login", "Account", new { UserId = "5" }))*@
 
-@using (Html.BeginForm("DisplayView","Home"))
-{  @Html.TextBox("UserID", null, new { @class = "form-control hidden", @value="@ViewBag.UserId" })
+@using (Html.BeginForm("DisplayView", "Home"))
+{
+    @*@Html.ValidationSummary()*@
+    @Html.TextBox("UserID", null, new { @class = "form-control hidden", @value = "UserId" })
 
 
     <p>
@@ -20,11 +25,11 @@
     </p>
     @*<input name="UserId" type="text" value="@ViewBag.UserId" class="hidden"/>*@
     <p>
-        Date of Event:
+        Event Date:
         <input name="DDate" type="date" class="form-control" />
     </p>
     <p>
-        Enter Budget:
+        Budget for the Event:
         @Html.TextBox("Budget", null, new { @class = "form-control" })
     </p>
     <p><input type="submit" value="Add Event" /></p>
@@ -32,49 +37,46 @@
 }
 
 
-<h2>DisplayView</h2>
+<h3>List of the Events for @ViewBag.UserName.</h3>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Budget)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PersonalInfo.Name)
-        </th>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Budget)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PersonalInfo.Name)
+            </th>
 
-        <th>
-            @Html.DisplayNameFor(model => model.EventDate)
-        </th>
-        <th></th>
-    </tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EventDate)
+            </th>
+            <th></th>
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Budget)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PersonalInfo.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(model => item.EventDate)
-        </td>
-        <td>
-            @Html.ActionLink("Continue Shopping", "ContinueShopping", new { id=item.ListID }) |            
-            @Html.ActionLink("Delete", "Delete", new { id=item.ListID })
-            @*@Html.ActionLink("Go to contact page", "Contact", new { Name = "Example" }, new { id = "link1" })*@
-        </td>
-    </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Budget)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PersonalInfo.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.EventDate)
+                </td>
+                <td>
+                    @Html.ActionLink("Continue Shopping", "ContinueShopping", new { id = item.ListID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ListID })
+                </td>
+            </tr>
+        }
 
-</table>
+    </table>

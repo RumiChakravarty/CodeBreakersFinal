@@ -3,42 +3,43 @@
 @{
     ViewBag.Title = "Index";
 }
+<img src="~/Scripts/image/slack_for_ios_upload.png" style="width:400px; display:block; margin:0 auto" alt="Budget Buddy Logo" />
 
-<h2>Enter your information</h2>
-
+<h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Enter your information</h3>
 @using (Html.BeginForm()) 
 {
+    
     @Html.AntiForgeryToken()
     
-    <div class="form-horizontal">
-        <h4>PersonalInfo</h4>
+    <div class="form-horizontal" style="text-align:center">        
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
+        <div class="form-group" style="text-align:inherit">
             @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+          
+            <div class="col-md-10" style="text-align:justify">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } }) 
+                @Html.ValidationMessageFor(model => model.Name, "*")
                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" style="text-align:inherit">
             @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-10" style="text-align:justify">
                 @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "*")
                 @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
             </div>
         </div>
         <input name="id" type="text" value="@ViewBag.UserId" style="visibility:hidden"/>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
+        <div class="form-group" style="text-align:inherit">
+            <div class="col-md-offset-2 col-md-10" style="text-align:justify">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

@@ -1,11 +1,12 @@
 ﻿@{
     ViewBag.Title = "DisplayAPIData";
 }
+@Html.ActionLink("Back to Continue Shopping", "ContinueShopping", new { id = ViewBag.ListID })
 
-<h2>DisplayAPIData</h2>
+<h3>Display the Items</h3>
+<img src="~/Scripts/image/slack_for_ios_upload.png" style="width:300px; float:right" />
 
 <div>
-    <h4>ListItem</h4>
     <hr />
     <table border="1">
         <tr>
@@ -25,7 +26,7 @@
                 <td>@listItem.ProductName</td>
                 <td>@listItem.Price</td>
                 <td><img src="@listItem.ThumbnailUrl" /></td>
-                <td>@using (Html.BeginForm("AddAPIValueToList", "Home", new {Product = listItem.ProductName, Price = listItem.Price , ListId= listItem.ListID, UserId= listItem.UserID, ThumbnailUrl = listItem.ThumbnailUrl}))
+                <td>@using (Html.BeginForm("AddAPIValueToList", "Home", new {Product = listItem.ProductName, Price = listItem.Price , ListId= listItem.ListID, UserId= listItem.UserID, ThumbnailUrl = listItem.ThumbnailUrl, GiftFor = listItem.GiftFor}))
                 {
                 <input type="submit" value="Add to List" />}*
                </td>

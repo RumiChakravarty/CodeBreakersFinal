@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Code_BreakersEventBudget.Models;
 using Code_BreakersEventBudget.Utility;
+using System.Net.Mail;
 
 namespace Code_BreakersEventBudget.Controllers
 {
@@ -30,7 +31,9 @@ namespace Code_BreakersEventBudget.Controllers
                 if (emailRecord == null || emailRecord.ToList().Count == 0)
                 {
                     PersonalInfo personalInfo = dbContext.PersonalInfoes.Add(newUser);
+
                     dbContext.SaveChanges();
+
                 }
                 else
                 {
@@ -46,12 +49,12 @@ namespace Code_BreakersEventBudget.Controllers
                 //return RedirectToAction("Index");
 
             }
-            //else
-            //{
-            //    return View("DisplayView");
-            //}
+            else
+            {
+                return View("Index");
+            }
             return RedirectToAction("DisplayView", new { id = id });
-           // return View("DisplayView");
+            // return View("DisplayView");
         }
 
         [HttpGet]
@@ -64,7 +67,7 @@ namespace Code_BreakersEventBudget.Controllers
                 if (existingList == null) { existingList = new List<List>(); }
             }
             ViewBag.UserID = id;
-            var row = dbContext.PersonalInfoes.Where(m=>m.UserID ==id).ToList();
+            var row = dbContext.PersonalInfoes.Where(m => m.UserID == id).ToList();
             ViewBag.UserName = row[0].Name;
             return View(existingList);
 
@@ -95,7 +98,7 @@ namespace Code_BreakersEventBudget.Controllers
             }
             else
             {
-                return View();
+                return View("DisplayView");
             }
         }
 
@@ -103,48 +106,21 @@ namespace Code_BreakersEventBudget.Controllers
         {
             List removeRecord = dbContext.Lists.Find(id);
             var uId = removeRecord.UserID;
+
+            var itemList = dbContext.ListItems.Where(m => m.ListID ==id);
+            dbContext.ListItems.RemoveRange(itemList.ToList());
+            
             dbContext.Lists.Remove(removeRecord);
             dbContext.SaveChanges();
-             List<List> existingLists = dbContext.Lists.Where(m => m.UserID == uId).ToList();
+            List<List> existingLists = dbContext.Lists.Where(m => m.UserID == uId).ToList();
             return RedirectToAction("DisplayView", new { id = uId });
             // return View("DisplayView", existingLists);
         }
-        //[HttpPost]
-        //public ActionResult Delete(int id, List l1)
-        //{
-        //    List removeRecord = dbContext.Lists.Find(id);
-        //    dbContext.Lists.Remove(removeRecord);
-        //    dbContext.SaveChanges();
-
-        //    return View("DisplayView");
-        //}
-
-        //public ActionResult ContinueShopping(int id)
-        //{
-        //    //List<ListItem> existingList = new List<ListItem>();
-        //    //if (id > 0)
-        //    //{
-        //    //    existingList = dbContext.ListItems.Where(m => m.ListId == id).ToList();
-        //    //    if (existingList == null) { existingList = new List<ListItem>(); }
-        //    //}
-        //    var uId = dbContext.Lists.Where(m => m.ListID == id).Single().UserID;
-        //    ViewBag.UserID = uId;
-        //    ViewBag.ListID = id;
-        //    ViewBag.UserName = dbContext.PersonalInfoes.Where(m => m.UserID == uId).Single().Name;
-        //     ViewBag.Budget = dbContext.Lists.Where(m => m.ListID == id).Single().Budget;
-        //    ViewBag.Event = dbContext.Lists.Where(m => m.ListID == id).Single().Description;
-        //    return View("ContinueShopping");
-        //}
 
 
         public ActionResult ContinueShopping(int id)
         {
-            //List<ListItem> existingList = new List<ListItem>();
-            //    //if (id > 0)
-            //    //{
-            //    //    existingList = dbContext.ListItems.Where(m => m.ListId == id).ToList();
-            //    //    if (existingList == null) { existingList = new List<ListItem>(); }
-            //    //}
+
             List<ListItem> existingList = new List<ListItem>();
             if (id > 0)
             {
@@ -163,7 +139,7 @@ namespace Code_BreakersEventBudget.Controllers
             var totalPrice = 0.0m;
             if (recCount > 0)
                 totalPrice = dbContext.ListItems.Where(m => m.ListID == id).Sum(m => m.Price);
-           
+
             DateTime eventDate = dbContext.Lists.Where(m => m.ListID == id).Single().EventDate.Value;
             TimeSpan timespan = eventDate - DateTime.Now;
             ViewBag.DaysLeft = timespan.Days;
@@ -171,7 +147,7 @@ namespace Code_BreakersEventBudget.Controllers
             if (totalPrice > budget)
             {
                 ViewBag.Message = "You have exceeded your budget!";
-            }               
+            }
             else
             {
                 var balanceRemain = budget - totalPrice;
@@ -180,7 +156,7 @@ namespace Code_BreakersEventBudget.Controllers
             return View("ContinueShopping", existingList);
         }
 
-       
+
         public ActionResult Search()
         {
             return View("ContinueShopping");
@@ -192,10 +168,11 @@ namespace Code_BreakersEventBudget.Controllers
             try
             {
                 string strSearch = collection["search"];
+                string giftFor = collection["GiftFor"];
                 int UserId = int.Parse(collection["UserId"]);
                 int ListId = int.Parse(collection["ListId"]);
                 Helper helper = new Helper();
-                List<ListItem> listItems = helper.CallWalmartAPI(strSearch,UserId,ListId);
+                List<ListItem> listItems = helper.CallWalmartAPI(strSearch, giftFor, UserId, ListId);
                 ViewBag.listItems = listItems;
                 ViewBag.ListID = ListId;
                 return View("DisplayAPIData");
@@ -207,32 +184,9 @@ namespace Code_BreakersEventBudget.Controllers
         }
 
 
-        //public ActionResult Add()
-        //{
-
-        //    return RedirectToAction("ContinueShopping");
-        //    //return View("ContinueShopping");
-        //    //return View();
-        //}
-
-        //     [HttpPost]
-        //public ActionResult Add(ListItem listItem)
-        //{
-
-        //    listItem = dbContext.ListItems.Add(listItem);
-        //        dbContext.SaveChanges();
-        //        //return View("ContinueShopping");
-
-        //    return RedirectToAction("ContinueShopping");
-
-        //}
-
-        
-
-      
 
         [HttpPost]
-        public ActionResult AddAPIValueToList(string Product, decimal Price, int ListID, int UserID, string ThumbnailUrl)
+        public ActionResult AddAPIValueToList(string Product, decimal Price, int ListID, int UserID, string ThumbnailUrl, string GiftFor)
         {
             ListItem listdetail = new ListItem();
             listdetail.ProductName = Product.Substring(0, Math.Min(Product.Length, 50));
@@ -240,6 +194,7 @@ namespace Code_BreakersEventBudget.Controllers
             listdetail.ListID = ListID;
             listdetail.UserID = UserID;
             listdetail.ThumbnailUrl = ThumbnailUrl;
+            listdetail.GiftFor = GiftFor;
             dbContext.ListItems.Add(listdetail);
             try
             {
@@ -249,8 +204,8 @@ namespace Code_BreakersEventBudget.Controllers
             {
 
             }
-          
-            return RedirectToAction("ContinueShopping" ,new { id = ListID});
+
+            return RedirectToAction("ContinueShopping", new { id = ListID });
 
         }
 
@@ -264,5 +219,36 @@ namespace Code_BreakersEventBudget.Controllers
             return RedirectToAction("ContinueShopping", new { id = lId });
             // return View("DisplayView", existingLists);
         }
+
+
+
+        public ActionResult SendEmail(FormCollection collection)
+        {
+            string strUrl= collection["urlField"];
+            int uId = int.Parse(collection["UserID"]);
+            int lId = int.Parse(collection["ListID"]);
+            var emailAddress = dbContext.PersonalInfoes.Where(m => m.UserID == uId).Single().Email;
+            System.Net.Mail.MailMessage mail = new System.Net.Mail.MailMessage();
+            //mail.From = new MailAddress("ritesh.chakravarty@gmail.com", "Testing Email");
+            mail.From = new MailAddress("teamcodebreaker@gmail.com", "BudgetBuddy");
+            mail.To.Add(emailAddress);
+            mail.IsBodyHtml = true;
+            mail.Subject = "List of the Items for your event from Budget Buddy";
+            //string url = "https://blogs.msdn.microsoft.com/";
+
+            Helper oHelper = new Helper();
+            mail.Body = oHelper.HttpContent(strUrl);
+            mail.Priority = System.Net.Mail.MailPriority.High;
+            SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+            //smtp.UseDefaultCredentials = true;
+            smtp.Credentials = new System.Net.NetworkCredential("teamcodebreaker@gmail.com", "GrandCircus");
+            smtp.EnableSsl = true;
+            //smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+
+            smtp.Send(mail);
+            ViewBag.lId = lId;
+            return View("SendEmail");
+        }
+
     }
 }
