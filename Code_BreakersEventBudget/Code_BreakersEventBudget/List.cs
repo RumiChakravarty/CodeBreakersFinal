@@ -20,6 +20,7 @@ namespace Code_BreakersEventBudget
         {
             this.ListItems = new HashSet<ListItem>();
         }
+
     
         public int ListID { get; set; }
         public int UserID { get; set; }
@@ -30,6 +31,8 @@ namespace Code_BreakersEventBudget
         //[Required(ErrorMessage = "Please enter your Budget")]
         //[DataType(DataType.Currency)]
         public decimal Budget { get; set; }
+
+        [DataType(DataType.Date)]
         public Nullable<System.DateTime> EventDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

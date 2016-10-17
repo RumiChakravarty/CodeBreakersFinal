@@ -80,6 +80,8 @@ namespace Code_BreakersEventBudget.Controllers
             {
                 usersNewList = new List();
             }
+            var dateAndTime = DateTime.Now;
+            var date = dateAndTime.Date;
 
             usersNewList.Description = form["Event"].ToString();
             usersNewList.Budget = decimal.Parse(form["Budget"]);
