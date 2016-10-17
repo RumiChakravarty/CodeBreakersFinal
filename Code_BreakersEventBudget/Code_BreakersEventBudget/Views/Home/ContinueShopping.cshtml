@@ -4,7 +4,7 @@
 }
 <img src="~/Scripts/image/slack_for_ios_upload.png" style="width:300px; float:right" />
 <h3>Hello @ViewBag.UserName</h3>
-<h3>Budget : @ViewBag.Budget</h3>
+<h3>Budget : $@ViewBag.Budget</h3>
 
 <h3>Countdown :@ViewBag.DaysLeft days left until @ViewBag.Event</h3>
 
@@ -46,7 +46,7 @@
                 @Html.DisplayFor(modelItem => item.ProductName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Price)
+                $@Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.GiftFor)
