@@ -43,10 +43,8 @@ namespace Code_BreakersEventBudget.Controllers
                 var rows = dbContext.PersonalInfoes.Where(m => m.Email.ToLower() == newUser.Email.ToLower()).ToList();
 
                 id = rows[0].UserID;
-                // ViewBag.PersonalInfo = personalInfo;
                 ViewBag.UserID = id;
                 ViewBag.UserName = newUser.Name;
-                //return RedirectToAction("Index");
 
             }
             else
@@ -92,10 +90,7 @@ namespace Code_BreakersEventBudget.Controllers
             {
                 List L1 = dbContext.Lists.Add(usersNewList);
                 dbContext.SaveChanges();
-
-                //return RedirectToAction("Index");
                 List<List> existingLists = dbContext.Lists.Where(m => m.UserID == id).ToList();
-
                 return View("DisplayView", existingLists);
             }
             else
@@ -108,15 +103,14 @@ namespace Code_BreakersEventBudget.Controllers
         {
             List removeRecord = dbContext.Lists.Find(id);
             var uId = removeRecord.UserID;
-
-            var itemList = dbContext.ListItems.Where(m => m.ListID ==id);
+           /////if this ListId have record in the LostItem table, delete the record of the ListItem table record first
+            var itemList = dbContext.ListItems.Where(m => m.ListID == id);
             dbContext.ListItems.RemoveRange(itemList.ToList());
-            
+
             dbContext.Lists.Remove(removeRecord);
             dbContext.SaveChanges();
             List<List> existingLists = dbContext.Lists.Where(m => m.UserID == uId).ToList();
             return RedirectToAction("DisplayView", new { id = uId });
-            // return View("DisplayView", existingLists);
         }
 
 
@@ -204,7 +198,7 @@ namespace Code_BreakersEventBudget.Controllers
             {
                 dbContext.SaveChanges();
             }
-            catch (Exception )
+            catch (Exception)
             {
 
             }
@@ -228,7 +222,7 @@ namespace Code_BreakersEventBudget.Controllers
 
         public ActionResult SendEmail(FormCollection collection)
         {
-            string strUrl= collection["urlField"];
+            string strUrl = collection["urlField"];
             int uId = int.Parse(collection["UserID"]);
             int lId = int.Parse(collection["ListID"]);
             var emailAddress = dbContext.PersonalInfoes.Where(m => m.UserID == uId).Single().Email;

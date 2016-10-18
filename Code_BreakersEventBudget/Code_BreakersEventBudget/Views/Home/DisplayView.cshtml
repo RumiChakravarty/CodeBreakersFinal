@@ -21,7 +21,8 @@
 
     <p>
         Enter the Event:
-        @Html.TextBox("Event", null, new { @class = "form-control" })
+        <input class="form-control" id="Event" name="Event" type="text" value="" required>
+        @*@Html.TextBox("Event", null, new { @class = "form-control" })*@
     </p>
     @*<input name="UserId" type="text" value="@ViewBag.UserId" class="hidden"/>*@
     <p>
@@ -30,7 +31,7 @@
     </p>
     <p>
         Budget for the Event:
-        <input class="form-control" id="Budget" name="Budget" type="text" value="">
+        <input class="form-control" id="Budget" name="Budget" type="text" value="" required>
         @*@Html.TextBox("Budget", null, new { @class = "form-control" })*@
     </p>
     <p><input type="submit" value="Add Event" /></p>
