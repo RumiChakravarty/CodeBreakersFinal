@@ -23,7 +23,12 @@ namespace Code_BreakersEventBudget
     
         public int ListID { get; set; }
         public int UserID { get; set; }
+        [Required(ErrorMessage = "Please enter the Event you want to shop for")]
+        //[RegularExpression(@"^[A-Z]+[a-z]", ErrorMessage = "Please enter your name (only string)")]
+        //[StringLength(30, ErrorMessage = "up to 30 character")]
         public string Description { get; set; }
+        [Required(ErrorMessage = "Please enter your Budget")]
+        [DataType(DataType.Currency)]
         public decimal Budget { get; set; }
         [DataType(DataType.Date)]
         public Nullable<System.DateTime> EventDate { get; set; }

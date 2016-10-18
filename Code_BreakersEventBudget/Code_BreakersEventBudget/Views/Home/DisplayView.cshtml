@@ -26,11 +26,12 @@
     @*<input name="UserId" type="text" value="@ViewBag.UserId" class="hidden"/>*@
     <p>
         Event Date:
-        <input name="DDate" type="date" min="@DateTime.Now.ToString("yyyy-MM-dd")" class="form-control" />
+        <input name="DDate" type="date" min="@DateTime.Now.ToString("yyyy-MM-dd")" class="form-control" required />
     </p>
     <p>
         Budget for the Event:
-        @Html.TextBox("Budget", null, new { @class = "form-control" })
+        <input class="form-control" id="Budget" name="Budget" type="text" value="">
+        @*@Html.TextBox("Budget", null, new { @class = "form-control" })*@
     </p>
     <p><input type="submit" value="Add Event" /></p>
 
