@@ -24,13 +24,9 @@ namespace Code_BreakersEventBudget
     
         public int UserID { get; set; }
         [Required(ErrorMessage = "Please enter your name")]
-        //[RegularExpression(@"^[A-Z]+[a-z]")]
-        //[StringLength(30, ErrorMessage = "up to 30 character")]
         public string Name { get; set; }
-       // [Required(ErrorMessage = "Email is Required")]
-        //[RegularExpression(@"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}", ErrorMessage = "Not a valid format.")]
-        [Required(ErrorMessage = "Please enter your email address")]
-        [RegularExpression(".+\\@.+\\..+", ErrorMessage = "Please enter your valid email address")]
+        [Required(ErrorMessage ="Please enter your email address")]
+        [RegularExpression(".+\\@.+\\..+", ErrorMessage="Please enter your valid email address")]
         public string Email { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -21,6 +21,7 @@ namespace Code_BreakersEventBudget
         public string GiftFor { get; set; }
         public int UserID { get; set; }
         public string ThumbnailUrl { get; set; }
+        public string ProductUrl { get; set; }
     
         public virtual List List { get; set; }
         public virtual PersonalInfo PersonalInfo { get; set; }

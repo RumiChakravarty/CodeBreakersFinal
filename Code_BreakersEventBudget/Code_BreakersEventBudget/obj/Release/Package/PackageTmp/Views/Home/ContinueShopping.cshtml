@@ -1,0 +1,91 @@
+﻿@model IEnumerable<Code_BreakersEventBudget.ListItem>
+@{
+    ViewBag.Title = "Continue Shopping";
+}
+<img src="~/Scripts/image/slack_for_ios_upload.png" style="width:300px; float:right" />
+<h3>Hello @ViewBag.UserName</h3>
+<h3>Budget : $@ViewBag.Budget</h3>
+
+<h3>Countdown :@ViewBag.DaysLeft days left until @ViewBag.Event</h3>
+
+<form name="form1" action="~/home/Search" method="post">
+    <label>Enter Item Name:</label>
+    <input id="search" name="search" type="text" />
+    <label>Gift for :</label>
+    <input id="GiftFor" name="GiftFor" type="text" />
+    <input id="UserID" type="hidden" name="UserId" value="@ViewBag.UserID" />
+    <input id="ListID" type="hidden" name="ListID" value="@ViewBag.ListID" />
+    <input type="submit" id="submit" name="submit" value="submit" />
+</form>
+<input id="UserID" type="hidden" name="UserID" value="@ViewBag.UserID" />
+@Html.ActionLink("Back to Add Event", "DisplayView", new { id = ViewBag.UserID })
+
+
+<h3>Shopping List for @ViewBag.Event</h3>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GiftFor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ThumbnailUrl)
+        </th>
+              
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                $@Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GiftFor)
+            </td>
+            <td>
+                <img src="@item.ThumbnailUrl" />
+            </td>
+              <td>
+                @Html.ActionLink("Delete", "DeleteFromListItem", new { id = item.ListItemID })
+            </td>
+        </tr>
+    }
+    <tr>
+        <td>
+            Total
+        </td>
+        <td>
+            $@ViewBag.TotalPrice
+        </td>
+        <td>
+            -
+        </td>
+        <td>
+            -
+        </td>
+
+    </tr>
+    <tr>
+        <td colspan="5">
+            <h2> @ViewBag.Message</h2>
+        </td>
+        
+    </tr>
+</table>
+@using (Html.BeginForm("SendEmail", "Home"))
+{
+    <input id="urlField" type="hidden" name="urlField" value="@HttpContext.Current.Request.Url.AbsoluteUri" />
+    <input id="UserID" type="hidden" name="UserID" value="@ViewBag.UserID" />
+    <input id="ListID" type="hidden" name="ListID" value="@ViewBag.ListID" />
+@*@HttpContext.Current.Request.Url.AbsoluteUri;*@
+<input type="submit" value="Send Email" />
+}

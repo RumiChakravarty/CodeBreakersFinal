@@ -209,6 +209,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\UserRecordEntities.cs" />
+    <Compile Include="DateTypeAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -280,6 +281,7 @@
     <Content Include="ModelUserRecord.edmx.diagram">
       <DependentUpon>ModelUserRecord.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\BudgetBuddy.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -11,7 +11,7 @@
           </Key>
           <Property Name="ListID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
-          <Property Name="Description" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
           <Property Name="Budget" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="EventDate" Type="date" />
         </EntityType>
@@ -26,6 +26,7 @@
           <Property Name="GiftFor" Type="nvarchar" MaxLength="50" />
           <Property Name="UserID" Type="int" Nullable="false" />
           <Property Name="ThumbnailUrl" Type="nvarchar(max)" />
+          <Property Name="ProductUrl" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="PersonalInfo">
           <Key>
@@ -98,7 +99,7 @@
           </Key>
           <Property Name="ListID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserID" Type="Int32" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Budget" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <NavigationProperty Name="ListItems" Relationship="Self.fk_List" FromRole="List" ToRole="ListItem" />
           <NavigationProperty Name="PersonalInfo" Relationship="Self.fk_PersonalInfo" FromRole="List" ToRole="PersonalInfo" />
@@ -117,6 +118,7 @@
           <NavigationProperty Name="List" Relationship="Self.fk_List" FromRole="ListItem" ToRole="List" />
           <NavigationProperty Name="PersonalInfo" Relationship="Self.fk_PersonalInfo1" FromRole="ListItem" ToRole="PersonalInfo" />
           <Property Name="ThumbnailUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProductUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="PersonalInfo">
           <Key>
@@ -201,6 +203,7 @@
           <EntitySetMapping Name="ListItems">
             <EntityTypeMapping TypeName="UserRecordModel.ListItem">
               <MappingFragment StoreEntitySet="ListItem">
+                <ScalarProperty Name="ProductUrl" ColumnName="ProductUrl" />
                 <ScalarProperty Name="ThumbnailUrl" ColumnName="ThumbnailUrl" />
                 <ScalarProperty Name="ListID" ColumnName="ListID" />
                 <ScalarProperty Name="ListItemID" ColumnName="ListItemID" />

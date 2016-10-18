@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="BudgetBuddy" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\PCUser\\Documents\\Final\ Project\\CodeBreakersFinal\\Code_BreakersEventBudget\\Code_BreakersEventBudget\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\PCUser\\Documents\\Final\ Project\\CodeBreakersFinal\\Code_BreakersEventBudget\\Code_BreakersEventBudget\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="DefaultConnection-Web.config Connection String" description="" value="DefaultConnection_ConnectionString" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\PCUser\\Documents\\Final\ Project\\CodeBreakersFinal\\Code_BreakersEventBudget\\Code_BreakersEventBudget\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+  <parameter name="UserRecordEntities1-Web.config Connection String" description="" value="metadata=res://*/ModelUserRecord.csdl|res://*/ModelUserRecord.ssdl|res://*/ModelUserRecord.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=codebreakers.database.windows.net;initial catalog=UserRecord;persist security info=True;user id=codebreakers;password=p@ssw0rd;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\PCUser\\Documents\\Final\ Project\\CodeBreakersFinal\\Code_BreakersEventBudget\\Code_BreakersEventBudget\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='UserRecordEntities1']/@connectionString" />
+  </parameter>
+  <parameter name="FinalProj_ListEntities-Web.config Connection String" description="FinalProj_ListEntities Connection String used in web.config by the application to access the database." value="metadata=res://*/ModelListdb.csdl|res://*/ModelListdb.ssdl|res://*/ModelListdb.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=NOAHS\SQLEXPRESS;initial catalog=FinalProj_List;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\PCUser\\Documents\\Final\ Project\\CodeBreakersFinal\\Code_BreakersEventBudget\\Code_BreakersEventBudget\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='FinalProj_ListEntities']/@connectionString" />
+  </parameter>
+  <parameter name="UserRecordEntities-Web.config Connection String" description="UserRecordEntities Connection String used in web.config by the application to access the database." value="metadata=res://*/Models.PersonalInfo.csdl|res://*/Models.PersonalInfo.ssdl|res://*/Models.PersonalInfo.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=Codebreakers.database.windows.net;initial catalog=UserRecord;user id=codebreakers;password=p@ssw0rd;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\PCUser\\Documents\\Final\ Project\\CodeBreakersFinal\\Code_BreakersEventBudget\\Code_BreakersEventBudget\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='UserRecordEntities']/@connectionString" />
+  </parameter>
+</parameters>

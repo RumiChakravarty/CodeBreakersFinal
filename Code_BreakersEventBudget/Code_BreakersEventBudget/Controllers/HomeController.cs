@@ -173,6 +173,7 @@ namespace Code_BreakersEventBudget.Controllers
                 string giftFor = collection["GiftFor"];
                 int UserId = int.Parse(collection["UserId"]);
                 int ListId = int.Parse(collection["ListId"]);
+                //string ProductUrl = collection["ProductUrl"];
                 Helper helper = new Helper();
                 List<ListItem> listItems = helper.CallWalmartAPI(strSearch, giftFor, UserId, ListId);
                 ViewBag.listItems = listItems;
@@ -188,7 +189,7 @@ namespace Code_BreakersEventBudget.Controllers
 
 
         [HttpPost]
-        public ActionResult AddAPIValueToList(string Product, decimal Price, int ListID, int UserID, string ThumbnailUrl, string GiftFor)
+        public ActionResult AddAPIValueToList(string Product, decimal Price, int ListID, int UserID, string ThumbnailUrl, string GiftFor, string ProductUrl)
         {
             ListItem listdetail = new ListItem();
             listdetail.ProductName = Product.Substring(0, Math.Min(Product.Length, 50));
@@ -197,12 +198,13 @@ namespace Code_BreakersEventBudget.Controllers
             listdetail.UserID = UserID;
             listdetail.ThumbnailUrl = ThumbnailUrl;
             listdetail.GiftFor = GiftFor;
+            listdetail.ProductUrl = ProductUrl;
             dbContext.ListItems.Add(listdetail);
             try
             {
                 dbContext.SaveChanges();
             }
-            catch (Exception e)
+            catch (Exception )
             {
 
             }
@@ -231,7 +233,6 @@ namespace Code_BreakersEventBudget.Controllers
             int lId = int.Parse(collection["ListID"]);
             var emailAddress = dbContext.PersonalInfoes.Where(m => m.UserID == uId).Single().Email;
             System.Net.Mail.MailMessage mail = new System.Net.Mail.MailMessage();
-            //mail.From = new MailAddress("ritesh.chakravarty@gmail.com", "Testing Email");
             mail.From = new MailAddress("teamcodebreaker@gmail.com", "BudgetBuddy");
             mail.To.Add(emailAddress);
             mail.IsBodyHtml = true;

@@ -41,7 +41,7 @@ namespace Code_BreakersEventBudget.Utility
                 listItem.Price = Convert.ToDecimal(body.items[i].salePrice);
                 listItem.ThumbnailUrl = body.items[i].thumbnailImage;
                 listItem.GiftFor = GiftFor;
-                //listItem.ProductURL = body.items[i].productUrl;
+               listItem.ProductUrl = body.items[i].productUrl;
                 listItems.Add(listItem);
             }
             return (listItems);

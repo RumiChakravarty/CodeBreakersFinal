@@ -6,7 +6,7 @@
     </Key>
     <Property Name="ListID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="UserID" Type="int" Nullable="false" />
-    <Property Name="Description" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="100" />
     <Property Name="Budget" Type="decimal" Precision="18" Scale="2" Nullable="false" />
     <Property Name="EventDate" Type="date" />
   </EntityType>
@@ -21,6 +21,7 @@
     <Property Name="GiftFor" Type="nvarchar" MaxLength="50" />
     <Property Name="UserID" Type="int" Nullable="false" />
     <Property Name="ThumbnailUrl" Type="nvarchar(max)" />
+    <Property Name="ProductUrl" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="PersonalInfo">
     <Key>

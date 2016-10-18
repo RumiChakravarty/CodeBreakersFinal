@@ -10,25 +10,26 @@
     <hr />
     <table border="1">
         <tr>
-            <th>ListID</th>
-            <th>UserID</th>
+            <th style="visibility:hidden">ListID</th>
+            <th style="visibility:hidden">UserID</th>
             <th>ItemName</th>
             <th>Price</th>
             <th>Thumbnnail URL</th>
-
+            @*<th>ProductURL</th>*@
             <th>Actions</th>
         </tr>
         @foreach (ListItem listItem in ViewBag.listItems)
         {
             <tr>
-                <td>@listItem.ListID</td>
-                <td>@listItem.UserID</td>
+                <td style="visibility:hidden">@listItem.ListID</td>
+                <td style="visibility:hidden">@listItem.UserID</td>
                 <td>@listItem.ProductName</td>
                 <td>$@listItem.Price</td>
                 <td><img src="@listItem.ThumbnailUrl" /></td>
-                <td>@using (Html.BeginForm("AddAPIValueToList", "Home", new {Product = listItem.ProductName, Price = listItem.Price , ListId= listItem.ListID, UserId= listItem.UserID, ThumbnailUrl = listItem.ThumbnailUrl, GiftFor = listItem.GiftFor}))
+                @*<td>@listItem.ProductUrl</td>*@
+                <td>@using (Html.BeginForm("AddAPIValueToList", "Home", new {Product = listItem.ProductName, Price = listItem.Price , ListId= listItem.ListID, UserId= listItem.UserID, ThumbnailUrl = listItem.ThumbnailUrl, GiftFor = listItem.GiftFor, ProductUrl = listItem.ProductUrl }))
                 {
-                <input type="submit" value="Add to List" />}*
+                <input type="submit" value="Add to List" />}
                </td>
             </tr>
         }
