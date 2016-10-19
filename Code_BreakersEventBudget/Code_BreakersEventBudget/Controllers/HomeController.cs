@@ -27,6 +27,8 @@ namespace Code_BreakersEventBudget.Controllers
 
             if (ModelState.IsValid)
             {
+                //------if the emailID already existed in the table, don't create a new record fot the User
+                //------if it is not there create a new record for that User
                 var emailRecord = dbContext.PersonalInfoes.Where(m => m.Email.ToLower() == newUser.Email.ToLower());
                 if (emailRecord == null || emailRecord.ToList().Count == 0)
                 {
@@ -52,7 +54,6 @@ namespace Code_BreakersEventBudget.Controllers
                 return View("Index");
             }
             return RedirectToAction("DisplayView", new { id = id });
-            // return View("DisplayView");
         }
 
         [HttpGet]
@@ -61,11 +62,14 @@ namespace Code_BreakersEventBudget.Controllers
             List<List> existingList = new List<List>();
             if (id > 0)
             {
+                //------------displaying the the records from the List table base on the USERID
                 existingList = dbContext.Lists.Where(m => m.UserID == id).ToList();
                 if (existingList == null) { existingList = new List<List>(); }
             }
             ViewBag.UserID = id;
+            //------based on the USERID we are getting the name of the User from the PersonalInfo Table
             var row = dbContext.PersonalInfoes.Where(m => m.UserID == id).ToList();
+            //Displaying the name on the DisplayView Page
             ViewBag.UserName = row[0].Name;
             return View(existingList);
 
@@ -103,7 +107,7 @@ namespace Code_BreakersEventBudget.Controllers
         {
             List removeRecord = dbContext.Lists.Find(id);
             var uId = removeRecord.UserID;
-           /////if this ListId have record in the LostItem table, delete the record of the ListItem table record first
+           /////-----if this ListId have record in the LostItem table, delete the record of the ListItem table record first
             var itemList = dbContext.ListItems.Where(m => m.ListID == id);
             dbContext.ListItems.RemoveRange(itemList.ToList());
 
@@ -147,7 +151,7 @@ namespace Code_BreakersEventBudget.Controllers
             else
             {
                 var balanceRemain = budget - totalPrice;
-                ViewBag.Message = "Remaining budget balance: " + balanceRemain.ToString();
+                ViewBag.Message = "Remaining budget balance: $" + balanceRemain.ToString();
             }
             return View("ContinueShopping", existingList);
         }
@@ -167,7 +171,12 @@ namespace Code_BreakersEventBudget.Controllers
                 string giftFor = collection["GiftFor"];
                 int UserId = int.Parse(collection["UserId"]);
                 int ListId = int.Parse(collection["ListId"]);
-                //string ProductUrl = collection["ProductUrl"];
+
+                //if(strSearch == "tv" || strSearch == "TV" || strSearch == "television")
+                //{
+                   
+                //}
+
                 Helper helper = new Helper();
                 List<ListItem> listItems = helper.CallWalmartAPI(strSearch, giftFor, UserId, ListId);
                 ViewBag.listItems = listItems;

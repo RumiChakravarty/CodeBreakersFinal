@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using EasyHttp.Http;
 using System.IO;
+using System.Net;
 
 namespace Code_BreakersEventBudget.Utility
 {
@@ -50,11 +51,36 @@ namespace Code_BreakersEventBudget.Utility
 
         public string HttpContent(string url)
         {
-            System.Net.WebRequest objRequest = System.Net.HttpWebRequest.Create(url);
+            WebRequest objRequest = System.Net.HttpWebRequest.Create(url);
             StreamReader sr = new StreamReader(objRequest.GetResponse().GetResponseStream());
-            string result = sr.ReadToEnd();
+            string content = sr.ReadToEnd();
             sr.Close();
-            return result;
+            int scriptEnd;
+            int scriptSart = content.IndexOf("<script", 0);
+            while (scriptSart > -1) //script tag exists
+            {
+                scriptEnd = content.IndexOf("</script>", scriptSart) + 9;
+                string scriptSection = content.Substring(scriptSart, (scriptEnd - scriptSart));
+                content = content.Replace(scriptSection, ""); //remove script section
+                scriptSart = content.IndexOf("<script", 0);
+            }
+            int formEnd;
+            int formSart = content.IndexOf("<form", 0);
+            while (formSart > -1) //form tag exists
+            {
+                formEnd = content.IndexOf("</form>", formSart) + 7;
+                string formSection = content.Substring(formSart, (formEnd - formSart));
+                content = content.Replace(formSection, ""); //remove form section
+                formSart = content.IndexOf("<form", 0);
+            }
+            return content;
+
+
+            //System.Net.WebRequest objRequest = System.Net.HttpWebRequest.Create(url);
+            //StreamReader sr = new StreamReader(objRequest.GetResponse().GetResponseStream());
+            //string result = sr.ReadToEnd();
+            //sr.Close();
+            //return result;
         }
 
     }

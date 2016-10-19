@@ -8,14 +8,11 @@
 <h3> Welcome @ViewBag.UserName</h3>
 <input id="UserID" type="hidden" name="UserID" value="@ViewBag.UserID" />
 <input id="UserName" type="hidden" name="ListID" value="@ViewBag.UserName" />
-@*@ViewBag.UserID
-    @ViewBag.UserName*@
+
 <h4>Please enter the event you want to shop for, event date and your budget</h4>
-@*@using (Html.BeginForm("Login", "Account", new { UserId = "5" }))*@
 
 @using (Html.BeginForm("DisplayView", "Home"))
 {
-    @*@Html.ValidationSummary()*@
     @Html.TextBox("UserID", null, new { @class = "form-control hidden", @value = "UserId" })
 
 
@@ -31,7 +28,7 @@
     </p>
     <p>
         Budget for the Event:
-        <input class="form-control" id="Budget" name="Budget" type="text" value="" required>
+        <input class="form-control" id="Budget" name="Budget" type="number" value="" required>
         @*@Html.TextBox("Budget", null, new { @class = "form-control" })*@
     </p>
     <p><input type="submit" value="Add Event" /></p>
