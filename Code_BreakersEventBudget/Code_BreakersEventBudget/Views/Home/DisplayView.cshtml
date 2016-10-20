@@ -4,7 +4,8 @@
     ViewBag.Title = "Display the Event and Budget";
 }
 
-<img src="~/Scripts/image/slack_for_ios_upload.png" style="width:300px; float:right" />
+<img src="~/Scripts/image/budgetbuddy_logo2.png" style="width:400px; float:right" />
+@*<img src="~/Scripts/image/slack_for_ios_upload.png" style="width:300px; float:right" />*@
 <h3> Welcome @ViewBag.UserName</h3>
 <input id="UserID" type="hidden" name="UserID" value="@ViewBag.UserID" />
 <input id="UserName" type="hidden" name="ListID" value="@ViewBag.UserName" />
@@ -17,17 +18,16 @@
 
 
     <p>
-        Enter the Event:
-        <input class="form-control" id="Event" name="Event" type="text" value="" required>
+        <b>Enter the Event: </b><input class="form-control" id="Event" name="Event" type="text" value="" required>
         @*@Html.TextBox("Event", null, new { @class = "form-control" })*@
     </p>
     @*<input name="UserId" type="text" value="@ViewBag.UserId" class="hidden"/>*@
     <p>
-        Event Date:
+        <b>Event Date:</b>
         <input name="DDate" type="date" min="@DateTime.Now.ToString("yyyy-MM-dd")" class="form-control" required />
     </p>
     <p>
-        Budget for the Event:
+        <b> Budget for the Event:</b>
         <input class="form-control" id="Budget" name="Budget" type="number" value="" required>
         @*@Html.TextBox("Budget", null, new { @class = "form-control" })*@
     </p>

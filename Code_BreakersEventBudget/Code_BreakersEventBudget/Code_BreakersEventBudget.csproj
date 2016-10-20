@@ -253,7 +253,11 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\budgetbuddy_logo2.png" />
+    <Content Include="Content\homebackground.jpg" />
+    <Content Include="Content\homebackgroundedited.jpg" />
     <Content Include="Content\HomeCSS.css" />
+    <Content Include="Content\home_tag.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -288,6 +292,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\image\budgetbuddy_logo2.png" />
     <Content Include="Scripts\image\images.jpg" />
     <Content Include="Scripts\image\slack_for_ios_upload.png" />
     <Content Include="Scripts\jquery-1.10.2.js" />
