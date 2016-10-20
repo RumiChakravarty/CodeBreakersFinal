@@ -4,33 +4,32 @@
     ViewBag.Title = "Display the Event and Budget";
 }
 
-<img src="~/Scripts/image/slack_for_ios_upload.png" style="width:300px; float:right" />
+<img src="~/Scripts/image/budgetbuddy_logo2.png" style="width:400px; float:right" />
+@*<img src="~/Scripts/image/slack_for_ios_upload.png" style="width:300px; float:right" />*@
 <h3> Welcome @ViewBag.UserName</h3>
 <input id="UserID" type="hidden" name="UserID" value="@ViewBag.UserID" />
 <input id="UserName" type="hidden" name="ListID" value="@ViewBag.UserName" />
-@*@ViewBag.UserID
-    @ViewBag.UserName*@
+
 <h4>Please enter the event you want to shop for, event date and your budget</h4>
-@*@using (Html.BeginForm("Login", "Account", new { UserId = "5" }))*@
 
 @using (Html.BeginForm("DisplayView", "Home"))
 {
-    @*@Html.ValidationSummary()*@
     @Html.TextBox("UserID", null, new { @class = "form-control hidden", @value = "UserId" })
 
 
     <p>
-        Enter the Event:
-        @Html.TextBox("Event", null, new { @class = "form-control" })
+        <b>Enter the Event: </b><input class="form-control" id="Event" name="Event" type="text" value="" required>
+        @*@Html.TextBox("Event", null, new { @class = "form-control" })*@
     </p>
     @*<input name="UserId" type="text" value="@ViewBag.UserId" class="hidden"/>*@
     <p>
-        Event Date:
-        <input name="DDate" type="date" min="@DateTime.Now.ToString("yyyy-MM-dd")" class="form-control" />
+        <b>Event Date:</b>
+        <input name="DDate" type="date" min="@DateTime.Now.ToString("yyyy-MM-dd")" class="form-control" required />
     </p>
     <p>
-        Budget for the Event:
-        @Html.TextBox("Budget", null, new { @class = "form-control" })
+        <b> Budget for the Event:</b>
+        <input class="form-control" id="Budget" name="Budget" type="number" value="" required>
+        @*@Html.TextBox("Budget", null, new { @class = "form-control" })*@
     </p>
     <p><input type="submit" value="Add Event" /></p>
 

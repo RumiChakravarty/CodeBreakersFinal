@@ -2,6 +2,7 @@
     ViewBag.Title = "DisplayAPIData";
 }
 <br />
+
 @Html.ActionLink("Back to Continue Shopping", "ContinueShopping", new { id = ViewBag.ListID })
 
 <h3>Display the Items</h3>
@@ -13,22 +14,22 @@
         <tr>
             <th style="visibility:hidden">ListID</th>
             <th style="visibility:hidden">UserID</th>
-            <th> Item Name</th>
-            <th width="100px" style="text-align:center">Price</th>
-            <th width="150px" style="text-align:center">Thumbnnail URL</th>
+            <th style="background-color:snow; padding:0 0 0 10px"> Item Name</th>
+            <th style="background-color:snow; padding:0 0 0 10px">Price</th>
+            <th style="background-color:snow; padding:0 0 0 10px">Thumbnnail URL</th>
             @*<th>ProductURL</th>*@
-            <th>Actions</th>
+            <th style="background-color:snow">Actions</th>
         </tr>
         @foreach (ListItem listItem in ViewBag.listItems)
         {
             <tr>
                 <td style="visibility:hidden">@listItem.ListID</td>
                 <td style="visibility:hidden">@listItem.UserID</td>
-                <td>@listItem.ProductName</td>
-                <td style="text-align:center">$@listItem.Price</td>
-                <td style="text-align:center"><img src="@listItem.ThumbnailUrl" /></td>
+                <td style="background-color:snow; padding:0 0 0 10px">@listItem.ProductName</td>
+                <td style="background-color:snow">$@listItem.Price</td>
+                <td style="background-color:snow"><img src="@listItem.ThumbnailUrl" /></td>
                 @*<td>@listItem.ProductUrl</td>*@
-                <td>@using (Html.BeginForm("AddAPIValueToList", "Home", new {Product = listItem.ProductName, Price = listItem.Price , ListId= listItem.ListID, UserId= listItem.UserID, ThumbnailUrl = listItem.ThumbnailUrl, GiftFor = listItem.GiftFor, ProductUrl = listItem.ProductUrl }))
+                <td style="background-color:snow">@using (Html.BeginForm("AddAPIValueToList", "Home", new {Product = listItem.ProductName, Price = listItem.Price , ListId= listItem.ListID, UserId= listItem.UserID, ThumbnailUrl = listItem.ThumbnailUrl, GiftFor = listItem.GiftFor, ProductUrl = listItem.ProductUrl }))
                 {
                 <input type="submit" value="Add to List" />}
                </td>

@@ -1,0 +1,34 @@
+﻿body {
+   
+    /*background-image: url('homebackgroundedited.jpg');*/
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: #ffffff;
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+}
+
+h1 {
+    color:#1C2858;
+    font-size:50px;
+    font-family:Impact;
+    letter-spacing: 5px;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-variant-caps:all-small-caps;
+
+}
+
+.restOfPageBackground {
+    background-image: url('homebackground.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: #ffffff;
+    opacity:0.5;
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+}
+
+
+p {
+    color: darkblue;
+}

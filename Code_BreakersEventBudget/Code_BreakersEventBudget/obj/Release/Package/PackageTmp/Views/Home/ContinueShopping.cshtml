@@ -2,15 +2,15 @@
 @{
     ViewBag.Title = "Continue Shopping";
 }
-<img src="~/Scripts/image/slack_for_ios_upload.png" style="width:300px; float:right" />
+<img src="~/Scripts/image/budgetbuddy_logo2.png" style="width:400px; float:right" />
 <h3>Hello @ViewBag.UserName</h3>
 <h3>Budget : $@ViewBag.Budget</h3>
 
 <h3>Countdown :@ViewBag.DaysLeft days left until @ViewBag.Event</h3>
-
+<br />
 <form name="form1" action="~/home/Search" method="post">
     <label>Enter Item Name:</label>
-    <input id="search" name="search" type="text" />
+    <input id="search" name="search" type="text"  required/>
     <label>Gift for :</label>
     <input id="GiftFor" name="GiftFor" type="text" />
     <input id="UserID" type="hidden" name="UserId" value="@ViewBag.UserID" />
@@ -18,12 +18,13 @@
     <input type="submit" id="submit" name="submit" value="submit" />
 </form>
 <input id="UserID" type="hidden" name="UserID" value="@ViewBag.UserID" />
+<br />
 @Html.ActionLink("Back to Add Event", "DisplayView", new { id = ViewBag.UserID })
 
 
 <h3>Shopping List for @ViewBag.Event</h3>
 
-<table class="table">
+<table class="table" style="background-color:snow">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.ProductName)
@@ -43,7 +44,7 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.ProductName)
+                <a href="@item.ProductUrl"> @Html.DisplayFor(modelItem => item.ProductName)</a>
             </td>
             <td>
                 $@Html.DisplayFor(modelItem => item.Price)
