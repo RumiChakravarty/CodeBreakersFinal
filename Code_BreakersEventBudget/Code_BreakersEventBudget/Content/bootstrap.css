@@ -758,10 +758,12 @@ pre code {
 }
 
 .container {
+    margin-top:0;
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
+
 }
 
 .container:before,
